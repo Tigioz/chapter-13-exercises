@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.parser.Parser;
 import javax.validation.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,4 +60,24 @@ public class EventController {
         return "redirect:";
     }
 
+
+    @GetMapping("/edit/{eventId}")
+    public String displayEditForm(Model model, @PathVariable int eventId) {
+        Event editEvent = EventData.getById(eventId);
+        model.addAttribute("event", editEvent);
+        String title = "Edit Event " + editEvent.getName() + " (id=" + editEvent.getId() + ")";
+        model.addAttribute("title", title);
+
+        return "/events/edit";
+    }
+
+
+    @PostMapping("/edit")
+    public String processEditForm(int eventId, String name, String description, String address) {
+       Event editEvent = EventData.getById(eventId);
+       editEvent.setName(name);
+       editEvent.setDescription(description);
+       editEvent.setAddress(address);
+       return "redirect:/events";
+    }
 }
