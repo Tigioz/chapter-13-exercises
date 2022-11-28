@@ -1,15 +1,19 @@
 package com.example.codingevents.models;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Entity
 public class Event {
 
+    @Id
+    @GeneratedValue
     private int id;
-    private static int nextId = 1;
+
 
     @NotBlank(message = "Name is required")
     @Size(min = 3, max = 50, message = "Name must be 3 to 50 characters long!")
@@ -24,21 +28,13 @@ public class Event {
     private String address;
 
 
-
-    public Event(){
-        this.id = nextId;
-        nextId++;
-    }
-
     public Event(String name, String description, String address, String contactEmail) {
-        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
         this.address = address;
-
     }
-
+    public Event(){}
 
     public String getName() {
         return name;

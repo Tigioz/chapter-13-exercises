@@ -19,13 +19,8 @@ import java.util.List;
 @RequestMapping("events")
 public class EventController {
 
-
-
-
     @GetMapping
     public String displayAllEvents(Model model) {
-
-
         model.addAttribute("events", EventData.getAll());
         return "/events/index";
     }
