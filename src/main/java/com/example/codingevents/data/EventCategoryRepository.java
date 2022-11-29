@@ -1,8 +1,10 @@
 package com.example.codingevents.data;
 
-import com.example.codingevents.models.Event;
+
+import com.example.codingevents.models.EventCategory;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EventRepository extends CrudRepository<Event, Integer> {}
+public interface EventCategoryRepository extends CrudRepository<EventCategory, Integer> {
+}
